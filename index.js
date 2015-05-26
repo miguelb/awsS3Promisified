@@ -213,18 +213,19 @@ var awsS3Promisified = {
    *        Copy the object to this bucket
    *    dstKey: String
    *        Create a new object name dstKey
+   *    params: Object
+   *        An object containing S3 parameters, NOT required
    *
    * Return:
    *    bluebird promise
    */
-  copyObject: function(srcBucket, srcKey, dstBucket, dstKey) {
+  copyObject: function(srcBucket, srcKey, dstBucket, dstKey, params) {
     return new BluebirdPromise(function(resolve, reject){
       var s3 = new AWS.S3();
-      var params = {
-        Bucket: dstBucket,
-        Key: dstKey,
-        CopySource: srcBucket + '/' + srcKey
-      };
+      params = params || {};
+      params.Bucket = dstBucket;
+      params.Key = dstKey;
+      params.CopySource = srcBucket + '/' + srcKey;
 
       s3.copyObject(params, function(error, data){
         if (error) { reject(error); }
