@@ -235,4 +235,4 @@ var awsS3Promisified = {
 
 };
 
-module.exports = awsS3Promisified.initialize();
+module.exports = awsS3Promisified;
