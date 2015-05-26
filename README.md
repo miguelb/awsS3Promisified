@@ -1,3 +1,14 @@
+
+Loading via configs:
+```
+var config = require('nconf');
+var aws = require('aws-s3-promisified').initialize(config.get('aws_key'), config.get('aws_secret'));
+```
+Loading via environment variables:
+```
+var aws = require('aws-s3-promisified').initialize();
+```
+
 awsS3Promisified
 ================
 
