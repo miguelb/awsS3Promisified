@@ -168,7 +168,7 @@ var awsS3Promisified = {
       params.Bucket = bucket;
       params.Key = key;
       params.Body = body;
-      params.contentLength = contentLength;
+      params.ContentLength = contentLength;
 
       s3.putObject(params, function(error, data){
         if (error) { reject(error); }
