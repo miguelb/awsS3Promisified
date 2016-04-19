@@ -161,15 +161,14 @@ var awsS3Promisified = {
    * Return:
    *    bluebird promise
    */
-  putObject: function(bucket, key, body, contentLength) {
+  putObject: function(bucket, key, body, contentLength, params) {
     return new BluebirdPromise(function(resolve, reject){
       var s3 = new AWS.S3();
-      var params = {
-        Bucket: bucket,
-        Key: key,
-        Body: body,
-        ContentLength: contentLength
-      };
+      params = params || {};
+      params.Bucket = bucket;
+      params.Key = key;
+      params.Body = body;
+      params.contentLength = contentLength;
 
       s3.putObject(params, function(error, data){
         if (error) { reject(error); }
